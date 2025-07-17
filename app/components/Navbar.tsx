@@ -31,6 +31,9 @@ export default function Navbar() {
         <Link href="/about" style={linkStyle("/about")}>
           Tentang
         </Link>
+        <Link href="/products" style={linkStyle("/products")}>
+          Products
+        </Link>
       </div>
     </nav>
   );

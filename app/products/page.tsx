@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 
 type Product = {
   id: number;
@@ -62,63 +63,66 @@ export default function ProductPage() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Manajemen Produk</h1>
+    <div>
+      <Navbar />
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-2xl font-bold mb-4">Manajemen Produk</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4 mb-8">
-        <input
-          type="text"
-          placeholder="Nama Produk"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full border rounded p-2"
-          required
-        />
-        <input
-          type="number"
-          placeholder="Harga"
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          className="w-full border rounded p-2"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          {editId !== null ? "Update" : "Tambah"} Produk
-        </button>
-      </form>
-
-      <ul className="space-y-2">
-        {products.map((product) => (
-          <li
-            key={product.id}
-            className="flex justify-between items-center border p-2 rounded"
+        <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+          <input
+            type="text"
+            placeholder="Nama Produk"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border rounded p-2"
+            required
+          />
+          <input
+            type="number"
+            placeholder="Harga"
+            value={price}
+            onChange={(e) => setPrice(Number(e.target.value))}
+            className="w-full border rounded p-2"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded"
           >
-            <div>
-              <p className="font-semibold">{product.name}</p>
-              <p className="text-sm text-gray-600">
-                Rp{product.price.toLocaleString()}
-              </p>
-            </div>
-            <div className="space-x-2">
-              <button
-                onClick={() => handleEdit(product)}
-                className="text-blue-500"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(product.id)}
-                className="text-red-500"
-              >
-                Hapus
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+            {editId !== null ? "Update" : "Tambah"} Produk
+          </button>
+        </form>
+
+        <ul className="space-y-2">
+          {products.map((product) => (
+            <li
+              key={product.id}
+              className="flex justify-between items-center border p-2 rounded"
+            >
+              <div>
+                <p className="font-semibold">{product.name}</p>
+                <p className="text-sm text-gray-600">
+                  Rp{product.price.toLocaleString()}
+                </p>
+              </div>
+              <div className="space-x-2">
+                <button
+                  onClick={() => handleEdit(product)}
+                  className="text-blue-500"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(product.id)}
+                  className="text-red-500"
+                >
+                  Hapus
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
